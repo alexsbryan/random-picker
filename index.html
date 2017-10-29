@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Picker</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Who's in class?</h1>
+    <textarea style="display: block; margin: auto" class='actual-students' rows='5'></textarea>
+  </body>
+  <script>
+    (function() {
+      const {ipcRenderer} = require('electron');
+      const students = ['Victor', 'Jose', 'Ali', 'Kae', 'Jorge', 'Beena', 'Yajaira', 'Nayeli', 'Angel', 'Aaron', 'Chazae', 'Amieri', 'Darleena'].sort();
+      document.querySelector('.actual-students').value = students.join(', ');
+      ipcRenderer.on('show-notification', function() {
+        const actualStudents = document.querySelector('.actual-students').value.split(',').map((item) => item.trim());
+        const index = Math.floor(Math.random() * actualStudents.length);
+        console.log(actualStudents);
+        console.log(index);
+        const sampledStudent = actualStudents[index];
+        var notif = new Notification(sampledStudent);
+      });
+    })()
+  </script>
+</html>
