@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/electron main.js --icon './icons/q.icns'",
-    "pack": "./node_modules/.bin/electron-builder --dir"
+    "start": "./node_modules/.bin/electron main.js"
   },
+  "repository": "https://github.com/alexsbryan/random-picker",
   "author": "Alex Bryan",
   "license": "ISC"
 }
