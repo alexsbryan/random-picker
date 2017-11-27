@@ -9,5 +9,8 @@
   },
   "repository": "https://github.com/alexsbryan/random-picker",
   "author": "Alex Bryan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.9"
+  }
 }
