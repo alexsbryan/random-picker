@@ -11,13 +11,17 @@
   <script>
     (function() {
       const {ipcRenderer} = require('electron');
-      const students = ['Victor', 'Jose', 'Ali', 'Kae', 'Jorge', 'Beena', 'Yajaira', 'Nayeli', 'Angel', 'Aaron', 'Chazae', 'Amieri', 'Darleena'].sort();
-      document.querySelector('.actual-students').value = students.join(', ');
+      const sampledSet = new Set();
+      const defaultStudents = ['Bremelyn', 'Jennifer L', 'Bryan', 'Farrah', 'Manny', 'Melat', 'Rosa', 'Salvador', 'David', 'Cyntia', 'Luis', 'Kenny', 'Jessica', 'Litz', 'Taheerah', 'Nataly', 'Jennifer H', 'Jose'].sort();
+      document.querySelector('.actual-students').value = defaultStudents.join(', ');
       ipcRenderer.on('show-notification', function() {
         const actualStudents = document.querySelector('.actual-students').value.split(',').map((item) => item.trim());
-        const index = Math.floor(Math.random() * actualStudents.length);
-        console.log(actualStudents);
-        console.log(index);
+        if (actualStudents.length === sampledSet.size) sampledSet.clear();
+        let index;
+        do {
+          index = Math.floor(Math.random() * actualStudents.length);
+        } while (sampledSet.has(index))
+        sampledSet.add(index);
         const sampledStudent = actualStudents[index];
         var notif = new Notification(sampledStudent);
       });
