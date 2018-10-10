@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/electron main.js"
+    "start": "./node_modules/.bin/electron index.js",
+    "build": "./node_modules/.bin/electron-packager . --overwrite && npm run build:dmg",
+    "build:dmg": "./node_modules/.bin/electron-installer-dmg random-caller-darwin-x64/random-caller.app dist/RandomPicker --overwrite"
   },
   "repository": "https://github.com/alexsbryan/random-picker",
   "author": "Alex Bryan",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "electron-installer-dmg": "^2.0.0",
+    "electron-packager": "^12.2.0",
     "electron": "^1.7.9"
   }
 }

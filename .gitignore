@@ -1,3 +1,5 @@
 node_modules
+dist
+random-caller-darwin-x64
 .git
 .DS_Store
