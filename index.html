@@ -7,6 +7,7 @@
   <body>
     <h1 style="text-align: center;">Who's in class?</h1>
     <textarea style="display: block; margin: auto" class='actual-students' rows='5'></textarea>
+    <h5 style="text-align: center;" id="shortcut"></h5>
   </body>
   <script>
     (function() {
@@ -14,6 +15,10 @@
       const sampledSet = new Set();
       const defaultStudents = ['Bremelyn', 'Jennifer L', 'Bryan', 'Farrah', 'Manny', 'Melat', 'Rosa', 'Salvador', 'David', 'Cyntia', 'Luis', 'Kenny', 'Jessica', 'Litz', 'Taheerah', 'Nataly', 'Jennifer H', 'Jose'].sort();
       document.querySelector('.actual-students').value = defaultStudents.join(', ');
+
+      var shortcutKeys = new URLSearchParams(window.location.search).get('shortcutKeys');
+      document.querySelector('#shortcut').textContent = "Shortcut: " + shortcutKeys;
+
       ipcRenderer.on('show-notification', function() {
         const actualStudents = document.querySelector('.actual-students').value.split(',').map((item) => item.trim());
         if (actualStudents.length === sampledSet.size) sampledSet.clear();

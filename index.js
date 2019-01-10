@@ -15,14 +15,19 @@ function createWindow () {
     show: true
   })
 
+  var shortcutKeys = 'CommandOrControl+Y';
+
   // and load the index.html of the app.
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
-    slashes: true
+    slashes: true,
+    query: {
+      shortcutKeys: shortcutKeys
+    }
   }))
 
-  globalShortcut.register('CommandOrControl+Y', () => {
+  globalShortcut.register(shortcutKeys, () => {
     win.webContents.send('show-notification');
   })
 
